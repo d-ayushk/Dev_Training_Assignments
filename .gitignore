@@ -1,0 +1,10 @@
+# Ignore Object files
+*.o
+*.a
+*.so
+
+# Ignore Executables
+maindynamic
+mainstatic
+main
+
