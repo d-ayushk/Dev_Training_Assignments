@@ -1,0 +1,7 @@
+1. Explain difference in flow control js and other language like python, c with example code.
+The difference is that js is non-blocking single threaded and event loop based language while
+other languages are multithreading by default and blocking languages.
+Other main difference is that the way they handle class and objects are very different
+in js everyfunciton is a consturctor function to a <function>.prototype object and other objects
+can inherit from the <function>.prototype object by creating a object of that function using 
+new <function>.
