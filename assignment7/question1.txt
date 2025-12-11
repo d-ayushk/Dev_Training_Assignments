@@ -1,0 +1,70 @@
+1. Explain difference b/w callback, promise and async await with example code.
+
+Callback :
+    Callback is a funciton given to another function as a prameter ,so that it can be called 
+    after execution of that funciton.
+    Callback funciton has 2 prameter one is error and then is the actual result that has to be
+    given from the executing function, if a error is found during execution of the function then
+    that error is given as a prameter to the callback function.
+    Mainly used to make the code behave in a synchronous way.
+
+    e.g:
+
+        let report = (res)=>{
+            alert("The sum is:",res);
+        }
+
+        funciton sum(a,b,report){
+            let sm = a+b;
+            report(sm);
+        }
+        sum(1,3);
+
+
+
+
+Promise : 
+    A Promise is a piece of code that runs a code and returns the result of the code in the from
+    of resolve or reject it means that if the code runs properly it returns resolve otherwise returns
+    reject. This is then caught by either .then or .catch block which is run using different queue 
+    in libuv and the other things execute asynchronously. There is also a .finally block that 
+    executes regardless of the result.
+
+    some other features of promises are that they can be chained and the result can be passed down 
+    there can be multiple catchs et cetera.
+
+    A Promise is something that is used to make callbacks more readable, If we have many callbacks
+    one after another ,id est nested callbacks , the readability of the code reduces by a lot 
+    hece promise 
+
+    e.g:
+        funciton sum(a,b){
+            return new Promise((resolve,reject)=>{
+                let res= a+b;
+                resolve(res);
+            });
+        }
+
+        sum(1,2).then((res)=>alert("The sum is:",res));
+
+async await:
+    Async is a keyword in js to make a code asynchronous which allows us to use await.
+    using Async does not make a funciton run asynchronously we need to use await to do that.
+    Async always results in a promise.even if the returned value is not a promise it is wrapped
+    in a promise.
+    Await requres a thenable object and blocks the function to do that task and this task in done
+    by the queues of libuv and other things outside the funciton continue their execution.
+    This removes the need to use a .then format or callback format and makes the code much more
+    readable.
+
+    e.g:
+        async function add(a, b) {
+            let ans = await Promise.resolve(
+            setTimeout(() => a + b),
+            1000
+        );
+        console.log(`The sum is:${ans}`);
+        return ans;
+        }
+
+        add(1, 2).then((sum)=>alert(`I got sum outside:${sum}`));
