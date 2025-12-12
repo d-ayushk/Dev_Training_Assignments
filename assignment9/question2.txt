@@ -1,0 +1,24 @@
+
+
+2. Explain difference ways in which child process can be created and difference b/w them.
+
+spawn
+Creates a child process for heavy tasks.
+Data flows between parent and child in raw streams (manual formatting required).
+Provides events for the parent to listen to:
+stdout.on("data"), stderr.on("data"), on("error"), on("close"), on("exit").
+
+exec
+Used to execute binaries or shell commands.
+Buffers the entire output and then returns it as a string.
+Parent receives events: error, close, exit.
+
+execFile
+Similar to exec, but executes a specific file directly without using a shell.
+Safer and faster when you know the exact executable.
+Events are the same as exec: error, close, exit.
+
+fork
+A special version of spawn for creating Node.js subprocesses only.
+Supports built-in structured messaging between parent and child using message and disconnect events.
+Events: message, disconnect, error, exit, close, stdout("data"), stderr("data").

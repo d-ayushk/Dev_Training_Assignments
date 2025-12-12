@@ -5,15 +5,14 @@ Assignment 9:
 
 */
 
-const { fork } = require("child_process");
+const emitter = require("events");
+const emt1 = require("./question1file2");
+require("./question1file2");
 
-const child = fork("./assignment9/question1file2.js");
 
-child.send(100);
-
-const getdata = new Promise((resolve, reject) => {
-  child.on("message", (msg) => {
-    resolve(msg);
-  });
+emt1.on("getdata",(data)=>{
+  console.log("\n",data.sum);
 });
-getdata.then((msg)=>console.log(msg));
+
+emt1.emit("givedata",{a:10,b:5});
+

@@ -1,14 +1,12 @@
 
+const emitter = require("events");
+const senderr = require("./question1");
+require("./question1");
+const emt1 = new emitter();
 
-
-
-process.on("message",(val)=>{
-    let sum =0;
-    for(let i =0;i<val;i++){
-        sum+=1;
-    }
-    process.send(sum,()=>{
-        process.exit(0);
-
-    });
+emt1.on("givedata",(data)=>{
+    console.log("data from program file 1");
+    emt1.emit("getdata",{sum:data.a+data.b});
 });
+
+module.exports = emt1;
